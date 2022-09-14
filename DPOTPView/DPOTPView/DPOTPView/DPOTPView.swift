@@ -104,6 +104,9 @@ public protocol DPOTPViewDelegate {
     /** Dark keyboard*/
     @IBInspectable open dynamic var isDarkKeyboard: Bool = false
     
+    /** Height of cell */
+    @IBInspectable open dynamic var heightOfCell: Float?
+    
     open dynamic var textEdgeInsets : UIEdgeInsets?
     open dynamic var editingTextEdgeInsets : UIEdgeInsets?
     
@@ -216,7 +219,7 @@ public protocol DPOTPViewDelegate {
                 attributes: [NSAttributedString.Key.foregroundColor: placeholderTextColor])
             }
             
-            textField.frame = CGRect(x:(CGFloat(i-1) * sizeTextField) + (CGFloat(i) * spacing/2) + (CGFloat(i-1) * spacing/2)  , y: (self.bounds.height - sizeTextField)/2 , width: sizeTextField, height: sizeTextField)
+            textField.frame = CGRect(x:(CGFloat(i-1) * sizeTextField) + (CGFloat(i) * spacing/2) + (CGFloat(i-1) * spacing/2)  , y: (self.bounds.height - sizeTextField)/2 , width: sizeTextField, height: heightOfCell == nil ? sizeTextField : heightOfCell)
             
             arrTextFields.append(textField)
             self.addSubview(textField)
